@@ -3,7 +3,6 @@ package edu.cscc;
 
 import org.junit.Assert;
 
-import java.util.Locale;
 
 public class CipherTest {
 
