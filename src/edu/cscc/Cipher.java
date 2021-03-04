@@ -1,36 +1,22 @@
 package edu.cscc;
 
 /**
- * Implementation of Caesar cipher
- * @author rplatt
+ * Cipher class for encoding/decoding messages
+ * @author Bob Platt
+ * @version 1.0
  */
+
 public class Cipher {
-    public int key;
-    private static char[] alphabet =
+    private static final char[] alphabet =
             "abcdefghijklmnopqrstuvwxyz".toCharArray();
 
     /**
-     * Constructor
-     * @param key cipher key - value 0 to 25
+     * Encode plaintext into ciphertext
+     * @param key used to encode message - value between 1 and 25
+     * @param plaintext original message
+     * @return encrypted ciphertext
      */
-    public Cipher(int key) {
-        this.key = key % 26;
-    }
-
-    /**
-     * Getter for cipher key
-     * @return key
-     */
-    public int getKey() {
-        return key;
-    }
-
-    /**
-     * Encrypt plaintext using Caesar cipher
-     * @param plaintext unencrypted text
-     * @return ciphertext
-     */
-    public String encode(String plaintext) {
+    public static String encode(int key, String plaintext) {
         String ciphertext = null;
         if (plaintext != null && !plaintext.isBlank()) {
             char[] parr = plaintext.trim().toLowerCase().toCharArray();
@@ -48,11 +34,12 @@ public class Cipher {
     }
 
     /**
-     * Decrypt ciphertext using Caesar cipher
-     * @param ciphertext encrypted text
+     * Decode ciphertext into plaintext
+     * @param key used to decode message - value between 1 and 25
+     * @param ciphertext encrypted message
      * @return plaintext
      */
-    public String decode(String ciphertext) {
+    public static String decode(int key, String ciphertext) {
         String plaintext = null;
         if (ciphertext != null && !ciphertext.isBlank()) {
             char[] carr = ciphertext.trim().toLowerCase().toCharArray();

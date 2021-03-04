@@ -1,32 +1,31 @@
 package edu.cscc;
 
-import org.junit.Assert;
-import org.junit.Test;
 
-import static org.junit.Assert.*;
+import org.junit.Assert;
+
+import java.util.Locale;
 
 public class CipherTest {
 
     @org.junit.Test
     public void encode() {
-        Cipher cipher = new Cipher(3);
-        Assert.assertTrue("mdcc".equals(cipher.encode("jazz")));
-        Assert.assertTrue("mdcc".equals(cipher.encode("Jazz")));
-        Assert.assertTrue("mdcc".equals(cipher.encode("   Jazz  ")));
-        Assert.assertTrue("mdcc!".equals(cipher.encode("   Jazz!  ")));
-        Assert.assertTrue(cipher.encode(null) == null);
+        int key = 3;
+        Assert.assertTrue("mdcc".equals(Cipher.encode(key, "jazz")));
+        Assert.assertTrue("mdcc".equals(Cipher.encode(key, "Jazz")));
+        Assert.assertTrue("mdcc".equals(Cipher.encode(key, "   Jazz   ")));
+        Assert.assertTrue("mdcc!".equals(Cipher.encode(key, "   Jazz!   ")));
+        Assert.assertTrue(Cipher.encode(key, null) == null);
     }
 
     @org.junit.Test
     public void decode() {
-            Cipher cipher = new Cipher(3);
-            Assert.assertTrue("jazz".equals(cipher.decode("mdcc")));
+        Assert.assertTrue("jazz".equals(Cipher.decode(3,"mdcc")));
     }
 
     @org.junit.Test
     public void both() {
+        int key=3;
         String str = "Java the Complete Reference by Herbert Schildt, 11th edition";
-        Cipher cipher = new Cipher(3);
-        Assert.assertTrue(str.toLowerCase().equals(cipher.decode(cipher.encode(str))));
+        Assert.assertTrue(str.toLowerCase().equals(Cipher.decode(key,Cipher.encode(key,str))));
     }
 }
